@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система для детского обучения и развития</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .controls select, .controls button {
+            padding: 10px;
+            font-size: 14px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .table th {
+            background-color: #f2f2f2;
+        }
+        .buttons {
+            display: flex;
+            gap: 5px;
+        }
+        .buttons button {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Система для детского обучения и развития</h2>
+        <div class="controls">
+            <div>
+                <label for="age">Возраст:</label>
+                <select id="age">
+                    <option value="">Выберите возраст</option>
+                    {% for age in ages %}
+                    <option value="{{ age }}">{{ age }}</option>
+                    {% endfor %}
+                </select>
+                <label for="skill">Навык:</label>
+                <select id="skill">
+                    <option value="">Выберите навык</option>
+                    {% for skill in skills %}
+                    <option value="{{ skill }}">{{ skill }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <button id="child-mode"onclick="location.href='/child-mode';">Войти в детский режим</button>
+                <button id="edit-mode"onclick="location.href='/edit_user';">Редактировать</button>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Навык</th>
+                    <th>Краткое описание</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.type }}</td>
+                    <td>{{ item.difficulty }}</td>
+                    <td>{{ item. task_info }}</td>
+                    <td class="buttons">
+                        <button>+</button>
+                        <button>-</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('child-mode').addEventListener('click', () => {
+            alert('Переход в детский режим');
+        });
+
+        document.getElementById('edit-mode').addEventListener('click', () => {
+            alert('Режим редактирования');
+        });
+    </script>
+</body>
+</html>
